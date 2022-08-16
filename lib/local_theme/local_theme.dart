@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:multi_theme_playground/local_theme/models/custom_color.dart';
 
 class LocalTheme extends ChangeNotifier {
-  Color? primary;
-  Color? secondary;
-  Color? warning;
-  Color? danger;
+  CustomColor? primary;
+  CustomColor? secondary;
+  CustomColor? warning;
+  CustomColor? danger;
   bool isDarkMode;
 
   // Singleton (uma única instância para todo o app)
@@ -26,29 +28,32 @@ class LocalTheme extends ChangeNotifier {
 
   static get instance => _instance;
 
-  // TODO: Salvar definiçōes de cores locais em um local storage e recuperar a partir dele
-  void setPrimaryColor({Color? color}) {
-    primary = color;
+  // HIVE
+  static final customColorBox = Hive.box<CustomColor?>("customColorBox");
+  static final brightnessBox = Hive.box<bool>("brightnessBox");
+
+  Future<void> setPrimaryColor({CustomColor? color}) async {
+    await customColorBox.put("primary", color);
     notifyListeners();
   }
 
-  void setSecondaryColor({Color? color}) {
-    secondary = color;
+  Future<void> setSecondaryColor({CustomColor? color}) async {
+    await customColorBox.put("secondary", color);
     notifyListeners();
   }
 
-  void setWarningColor({Color? color}) {
-    warning = color;
+  Future<void> setWarningColor({CustomColor? color}) async {
+    await customColorBox.put("warning", color);
     notifyListeners();
   }
 
-  void setDangerColor({Color? color}) {
-    danger = color;
+  Future<void> setDangerColor({CustomColor? color}) async {
+    await customColorBox.put("danger", color);
     notifyListeners();
   }
 
-  void setDarkMode(bool value) {
-    isDarkMode = value;
+  Future<void> setDarkMode(bool value) async {
+    await brightnessBox.put("isDarkMode", value);
     notifyListeners();
   }
 }

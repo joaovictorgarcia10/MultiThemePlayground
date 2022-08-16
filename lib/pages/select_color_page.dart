@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:multi_theme_playground/local_theme/models/custom_color.dart';
 
 class SelectColorPage extends StatefulWidget {
-  final Function(Color? color) onSelectColor;
+  final Function(CustomColor? color) onSelectColor;
 
   const SelectColorPage({
     Key? key,
@@ -13,14 +14,13 @@ class SelectColorPage extends StatefulWidget {
 }
 
 class _SelectColorPageState extends State<SelectColorPage> {
-  final List<Color> colors = [
-    Colors.purple,
-    Colors.orange,
-    Colors.yellow,
-    Colors.red,
-    Colors.brown,
-    Colors.grey,
-    Colors.blue,
+  final List<CustomColor> colors = [
+    CustomColor(name: "purple", color: 0xFF9C27B0),
+    CustomColor(name: "orange", color: 0xFFFF9800),
+    CustomColor(name: "yellow", color: 0xFFFFEB3B),
+    CustomColor(name: "red", color: 0xFFF44336),
+    CustomColor(name: "brown", color: 0xFF795548),
+    CustomColor(name: "grey", color: 0xFF9E9E9E),
   ];
 
   @override
@@ -35,8 +35,8 @@ class _SelectColorPageState extends State<SelectColorPage> {
           final color = colors[index];
 
           return ListTile(
-            title: Text(color.hashCode.toString()),
-            leading: CircleAvatar(backgroundColor: color),
+            title: Text(color.name),
+            leading: CircleAvatar(backgroundColor: Color(color.color)),
             trailing: IconButton(
               onPressed: () {
                 widget.onSelectColor(color);

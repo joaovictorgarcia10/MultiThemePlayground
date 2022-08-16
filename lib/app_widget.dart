@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_atomic_design/exports/tokens.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:multi_theme_playground/pages/change_theme_page.dart';
 import 'package:multi_theme_playground/local_theme/local_theme.dart';
 import 'package:multi_theme_playground/pages/home_page.dart';
+import 'local_theme/models/custom_color.dart';
 
 class AppWidget extends StatelessWidget {
   final String globalTheme;
@@ -12,15 +14,31 @@ class AppWidget extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // Sets the GlobalTheme from Design System using de .env build settings
+    MTheme.t(theme: globalTheme);
+
+    // Gets the LocalTheme Colors and Brightness from Local Storage
+    final customColorBox = Hive.box<CustomColor?>("customColorBox");
+    final brightnessBox = Hive.box<bool>("brightnessBox");
+
     ThemeData themeData = ThemeData();
 
-    // Temas
-    MTheme.t(theme: globalTheme);
-    LocalTheme localTheme = LocalTheme.instance;
-
     return AnimatedBuilder(
-      animation: localTheme,
+      animation: LocalTheme.instance,
       builder: (_, __) {
+        // Settings Variables
+        var primary = (customColorBox.get("primary") != null)
+            ? Color(customColorBox.get("primary")!.color)
+            : MTheme.t().colors.primary;
+
+        var secondary = (customColorBox.get("secondary") != null)
+            ? Color(customColorBox.get("secondary")!.color)
+            : MTheme.t().colors.secondary;
+
+        var brightness = (brightnessBox.get("isDarkMode") == true)
+            ? Brightness.dark
+            : Brightness.light;
+
         return MaterialApp(
           title: 'Flutter MultiTheme',
           initialRoute: "/",
@@ -28,13 +46,10 @@ class AppWidget extends StatelessWidget {
             "/": (_) => const HomePage(),
             "/change_theme": (_) => const ChangeThemePage(),
           },
-          theme: ThemeData(
-            brightness:
-                localTheme.isDarkMode ? Brightness.dark : Brightness.light,
-          ).copyWith(
+          theme: ThemeData(brightness: brightness).copyWith(
             colorScheme: themeData.colorScheme.copyWith(
-              primary: localTheme.primary ?? MTheme.t().colors.primary,
-              secondary: localTheme.secondary ?? MTheme.t().colors.secondary,
+              primary: primary,
+              secondary: secondary,
             ),
           ),
         );
