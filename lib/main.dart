@@ -15,6 +15,9 @@ Future<void> main() async {
   await Hive.openBox<bool>('brightnessBox');
 
   runApp(
-    AppWidget(globalTheme: CustomEnv.get("THEME")),
+    AppWidget(
+      globalTheme: CustomEnv.get("THEME"),
+      enviroment: CustomEnv.get("ENV"),
+    ),
   );
 }

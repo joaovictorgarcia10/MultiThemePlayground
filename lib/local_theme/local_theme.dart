@@ -3,34 +3,21 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:multi_theme_playground/local_theme/models/custom_color.dart';
 
 class LocalTheme extends ChangeNotifier {
-  CustomColor? primary;
-  CustomColor? secondary;
-  CustomColor? warning;
-  CustomColor? danger;
-  bool isDarkMode;
-
   // Singleton (uma única instância para todo o app)
-  LocalTheme._({
-    this.primary,
-    this.secondary,
-    this.warning,
-    this.danger,
-    this.isDarkMode = false,
-  });
-
-  static final LocalTheme _instance = LocalTheme._(
-    primary: null,
-    secondary: null,
-    warning: null,
-    danger: null,
-    isDarkMode: false,
-  );
-
+  LocalTheme._();
+  static final LocalTheme _instance = LocalTheme._();
   static get instance => _instance;
 
   // HIVE
   static final customColorBox = Hive.box<CustomColor?>("customColorBox");
   static final brightnessBox = Hive.box<bool>("brightnessBox");
+
+  // ACTIONS
+  Future<void> useGlobalTheme() async {
+    await customColorBox.clear();
+    await brightnessBox.clear();
+    notifyListeners();
+  }
 
   Future<void> setPrimaryColor({CustomColor? color}) async {
     await customColorBox.put("primary", color);

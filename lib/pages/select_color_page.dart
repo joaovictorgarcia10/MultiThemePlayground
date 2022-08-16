@@ -15,12 +15,12 @@ class SelectColorPage extends StatefulWidget {
 
 class _SelectColorPageState extends State<SelectColorPage> {
   final List<CustomColor> colors = [
-    CustomColor(name: "purple", color: 0xFF9C27B0),
-    CustomColor(name: "orange", color: 0xFFFF9800),
-    CustomColor(name: "yellow", color: 0xFFFFEB3B),
-    CustomColor(name: "red", color: 0xFFF44336),
-    CustomColor(name: "brown", color: 0xFF795548),
-    CustomColor(name: "grey", color: 0xFF9E9E9E),
+    CustomColor(name: "Purple", color: 0xFF9C27B0),
+    CustomColor(name: "Orange", color: 0xFFFF9800),
+    CustomColor(name: "Yellow", color: 0xFFFFEB3B),
+    CustomColor(name: "Red", color: 0xFFF44336),
+    CustomColor(name: "Brown", color: 0xFF795548),
+    CustomColor(name: "Grey", color: 0xFF9E9E9E),
   ];
 
   @override

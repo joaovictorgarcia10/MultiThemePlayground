@@ -12,7 +12,6 @@ class ChangeThemePage extends StatefulWidget {
 
 class _ChangeThemePageState extends State<ChangeThemePage> {
   final LocalTheme localTheme = LocalTheme.instance;
-
   static final brightnessBox = Hive.box<bool>("brightnessBox");
 
   @override
@@ -63,6 +62,14 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          localTheme.useGlobalTheme();
+          setState(() {});
+        },
+        label: const Text("Usar tema global"),
+        icon: const Icon(Icons.dangerous_outlined),
       ),
     );
   }

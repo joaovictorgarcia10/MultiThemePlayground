@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_atomic_design/exports/tokens.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:multi_theme_playground/pages/change_theme_page.dart';
 import 'package:multi_theme_playground/local_theme/local_theme.dart';
+import 'package:multi_theme_playground/pages/change_theme_page.dart';
 import 'package:multi_theme_playground/pages/home_page.dart';
+
 import 'local_theme/models/custom_color.dart';
 
 class AppWidget extends StatelessWidget {
   final String globalTheme;
+  final String enviroment;
 
-  const AppWidget({Key? key, required this.globalTheme}) : super(key: key);
+  const AppWidget({
+    Key? key,
+    required this.globalTheme,
+    required this.enviroment,
+  }) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    print("Global Theme: $globalTheme");
+    print("Enviroment: $enviroment");
+
     // Sets the GlobalTheme from Design System using de .env build settings
     MTheme.t(theme: globalTheme);
 
@@ -22,11 +31,12 @@ class AppWidget extends StatelessWidget {
     final brightnessBox = Hive.box<bool>("brightnessBox");
 
     ThemeData themeData = ThemeData();
+    LocalTheme localTheme = LocalTheme.instance;
 
     return AnimatedBuilder(
-      animation: LocalTheme.instance,
+      animation: localTheme,
       builder: (_, __) {
-        // Settings Variables
+        // Theme Settings Variables
         var primary = (customColorBox.get("primary") != null)
             ? Color(customColorBox.get("primary")!.color)
             : MTheme.t().colors.primary;
