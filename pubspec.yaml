@@ -9,11 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    
   cupertino_icons: ^1.0.2
   flutter_dotenv: ^5.0.2
-  
-  flutter_atomic_design: 
-    path: flutter_atomic_design/lib/flutter_atomic_design
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   hive_generator: ^1.1.3

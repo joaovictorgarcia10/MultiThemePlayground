@@ -5,13 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "MultiTheme Creche - Dev",
+            "name": "MultiTheme Standard - Dev",
             "request": "launch",
             "type": "dart",
             "console": "debugConsole",
             "args": [
-                "--dart-define=THEME=Creche",
-                "--dart-define=env=dev",
+                "--dart-define=THEME=Standard",
+                "--dart-define=ENV=dev",
             ],
         },
         {

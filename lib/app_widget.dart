@@ -1,6 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
-import 'package:flutter_atomic_design/exports/tokens.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:multi_theme_playground/global_theme/global_theme.dart';
 import 'package:multi_theme_playground/local_theme/local_theme.dart';
 import 'package:multi_theme_playground/pages/change_theme_page.dart';
 import 'package:multi_theme_playground/pages/home_page.dart';
@@ -23,7 +25,7 @@ class AppWidget extends StatelessWidget {
     print("Enviroment: $enviroment");
 
     // Sets the GlobalTheme from Design System using de .env build settings
-    MTheme.t(theme: globalTheme);
+    GTheme.t(theme: globalTheme);
 
     // Gets the LocalTheme Colors and Brightness from Local Storage
     final customColorBox = Hive.box<CustomColor?>("customColorBox");
@@ -38,18 +40,18 @@ class AppWidget extends StatelessWidget {
         // Theme Settings Variables
         var primary = (customColorBox.get("primary") != null)
             ? Color(customColorBox.get("primary")!.color)
-            : MTheme.t().colors.primary;
+            : GTheme.t().colors.primary;
 
         var secondary = (customColorBox.get("secondary") != null)
             ? Color(customColorBox.get("secondary")!.color)
-            : MTheme.t().colors.secondary;
+            : GTheme.t().colors.secondary;
 
         var brightness = (brightnessBox.get("isDarkMode") == true)
             ? Brightness.dark
             : Brightness.light;
 
         return MaterialApp(
-          title: 'Flutter MultiTheme',
+          title: 'MultiTheme App',
           initialRoute: "/",
           routes: {
             "/": (_) => const HomePage(),

@@ -195,13 +195,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_atomic_design:
-    dependency: "direct main"
-    description:
-      path: "flutter_atomic_design/lib/flutter_atomic_design"
-      relative: true
-    source: path
-    version: "0.0.1"
   flutter_dotenv:
     dependency: "direct main"
     description:
@@ -459,13 +452,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
-  shimmer:
-    dependency: transitive
-    description:
-      name: shimmer
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   sky_engine:
     dependency: transitive
     description: flutter

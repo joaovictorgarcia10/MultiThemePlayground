@@ -17,6 +17,7 @@ class CustomEnv {
     try {
       final response = await rootBundle.loadString(fileName);
       final parse = const Parser().parse(response.split("\n"));
+
       map["ENV"] = parse["ENV"] ?? parse['env'];
       map["THEME"] = parse["THEME"] ?? parse['theme'];
     } catch (e) {
@@ -38,6 +39,7 @@ class CustomEnv {
 
       map['ENV'] = env.isEmpty ? _env : env;
       map['THEME'] = theme.isEmpty ? _theme : theme;
+
       return true;
     } catch (e) {
       return false;

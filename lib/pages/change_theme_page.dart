@@ -68,7 +68,7 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
           localTheme.useGlobalTheme();
           setState(() {});
         },
-        label: const Text("Usar tema global"),
+        label: const Text("Resetar configurações de tema local"),
         icon: const Icon(Icons.dangerous_outlined),
       ),
     );

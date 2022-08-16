@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:multi_theme_playground/local_theme/models/custom_color.dart';
 
 class LocalTheme extends ChangeNotifier {
-  // Singleton (uma única instância para todo o app)
+  // Singleton
   LocalTheme._();
   static final LocalTheme _instance = LocalTheme._();
   static get instance => _instance;
