@@ -4,7 +4,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:multi_theme_playground/local_theme/local_theme.dart';
 import 'package:multi_theme_playground/pages/change_theme_page.dart';
 import 'package:multi_theme_playground/pages/home_page.dart';
-
 import 'local_theme/models/custom_color.dart';
 
 class AppWidget extends StatelessWidget {
