@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_theme_playground/local_theme/local_theme.dart';
+import 'package:multi_theme_playground/pages/select_color_page.dart';
 
 class ChangeThemePage extends StatefulWidget {
   const ChangeThemePage({Key? key}) : super(key: key);
@@ -22,15 +23,39 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
         child: Column(
           children: [
             ListTile(
-              title: const Text("Clique para alterar a  Primary Color"),
+              title: const Text("Alterar cor primária"),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
-                localTheme.setPrimaryColor(color: Colors.brown);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => SelectColorPage(
+                      onSelectColor: (color) =>
+                          localTheme.setPrimaryColor(color: color),
+                    ),
+                  ),
+                );
               },
             ),
             ListTile(
-              title: const Text("Clique para alterar a Secondary Color"),
+              title: const Text("Alterar cor secundária"),
+              trailing: const Icon(Icons.arrow_forward_ios),
               onTap: () {
-                localTheme.setSecondaryColor(color: Colors.pink);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => SelectColorPage(
+                      onSelectColor: (color) =>
+                          localTheme.setSecondaryColor(color: color),
+                    ),
+                  ),
+                );
+              },
+            ),
+            SwitchListTile(
+              title: const Text("Tema escuro"),
+              value: localTheme.isDarkMode,
+              onChanged: (value) {
+                localTheme.setDarkMode(value);
+                setState(() {});
               },
             ),
           ],

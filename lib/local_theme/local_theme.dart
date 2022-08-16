@@ -5,6 +5,7 @@ class LocalTheme extends ChangeNotifier {
   Color? secondary;
   Color? warning;
   Color? danger;
+  bool isDarkMode;
 
   // Singleton (uma única instância para todo o app)
   LocalTheme._({
@@ -12,6 +13,7 @@ class LocalTheme extends ChangeNotifier {
     this.secondary,
     this.warning,
     this.danger,
+    this.isDarkMode = false,
   });
 
   static final LocalTheme _instance = LocalTheme._(
@@ -19,6 +21,7 @@ class LocalTheme extends ChangeNotifier {
     secondary: null,
     warning: null,
     danger: null,
+    isDarkMode: false,
   );
 
   static get instance => _instance;
@@ -41,6 +44,11 @@ class LocalTheme extends ChangeNotifier {
 
   void setDangerColor({Color? color}) {
     danger = color;
+    notifyListeners();
+  }
+
+  void setDarkMode(bool value) {
+    isDarkMode = value;
     notifyListeners();
   }
 }

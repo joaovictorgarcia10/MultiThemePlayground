@@ -28,7 +28,10 @@ class AppWidget extends StatelessWidget {
             "/": (_) => const HomePage(),
             "/change_theme": (_) => const ChangeThemePage(),
           },
-          theme: themeData.copyWith(
+          theme: ThemeData(
+            brightness:
+                localTheme.isDarkMode ? Brightness.dark : Brightness.light,
+          ).copyWith(
             colorScheme: themeData.colorScheme.copyWith(
               primary: localTheme.primary ?? MTheme.t().colors.primary,
               secondary: localTheme.secondary ?? MTheme.t().colors.secondary,
