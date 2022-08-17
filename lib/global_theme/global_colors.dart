@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// These Global Colors Config can be brought from a Design System Package
+
 abstract class GlobalColors {
   Color get primary;
   Color get secondary;
