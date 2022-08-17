@@ -9,11 +9,11 @@ class LocalTheme extends ChangeNotifier {
   static get instance => _instance;
 
   // HIVE
-  static final customColorBox = Hive.box<CustomColor?>("customColorBox");
-  static final brightnessBox = Hive.box<bool>("brightnessBox");
+  final customColorBox = Hive.box<CustomColor?>("customColorBox");
+  final brightnessBox = Hive.box<bool>("brightnessBox");
 
   // ACTIONS
-  Future<void> useGlobalTheme() async {
+  Future<void> disposeLocalTheme() async {
     await customColorBox.clear();
     await brightnessBox.clear();
     notifyListeners();
@@ -26,16 +26,6 @@ class LocalTheme extends ChangeNotifier {
 
   Future<void> setSecondaryColor({CustomColor? color}) async {
     await customColorBox.put("secondary", color);
-    notifyListeners();
-  }
-
-  Future<void> setWarningColor({CustomColor? color}) async {
-    await customColorBox.put("warning", color);
-    notifyListeners();
-  }
-
-  Future<void> setDangerColor({CustomColor? color}) async {
-    await customColorBox.put("danger", color);
     notifyListeners();
   }
 

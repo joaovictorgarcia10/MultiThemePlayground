@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:multi_theme_playground/local_theme/local_theme.dart';
 import 'package:multi_theme_playground/pages/select_color_page.dart';
 
@@ -12,7 +11,6 @@ class ChangeThemePage extends StatefulWidget {
 
 class _ChangeThemePageState extends State<ChangeThemePage> {
   final LocalTheme localTheme = LocalTheme.instance;
-  static final brightnessBox = Hive.box<bool>("brightnessBox");
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +52,10 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
             ),
             SwitchListTile(
               title: const Text("Tema escuro"),
-              value: brightnessBox.get("isDarkMode", defaultValue: false)!,
+              value: localTheme.brightnessBox.get(
+                "isDarkMode",
+                defaultValue: false,
+              )!,
               onChanged: (value) {
                 localTheme.setDarkMode(value);
                 setState(() {});
@@ -65,7 +66,7 @@ class _ChangeThemePageState extends State<ChangeThemePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          localTheme.useGlobalTheme();
+          localTheme.disposeLocalTheme();
           setState(() {});
         },
         label: const Text("Resetar configurações de tema local"),

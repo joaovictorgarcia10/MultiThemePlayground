@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:multi_theme_playground/app_widget.dart';
 import 'package:multi_theme_playground/custom_env/custom_env.dart';
-import 'package:multi_theme_playground/local_theme/models/custom_color.dart';
+import 'local_theme/models/custom_color.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
