@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multi_theme_playground/local_theme/local_theme.dart';
-import 'package:multi_theme_playground/pages/select_color_page.dart';
+import 'package:multi_theme_playground/pages/change_theme/select_color_page.dart';
 
 class ChangeThemePage extends StatefulWidget {
   const ChangeThemePage({Key? key}) : super(key: key);
