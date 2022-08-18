@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:multi_theme_playground/global_theme/global_theme.dart';
 import 'package:multi_theme_playground/local_theme/local_theme.dart';
 import 'package:multi_theme_playground/pages/change_theme/change_theme_page.dart';
-import 'package:multi_theme_playground/pages/login_page.dart';
 import 'package:multi_theme_playground/pages/home_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -49,8 +48,7 @@ class AppWidget extends StatelessWidget {
           title: 'MultiTheme App',
           initialRoute: "/",
           routes: {
-            "/": (_) => const LoginPage(),
-            "/home": (_) => const HomePage(),
+            "/": (_) => const HomePage(),
             "/change_theme": (_) => const ChangeThemePage(),
           },
           theme: ThemeData(brightness: brightness).copyWith(
